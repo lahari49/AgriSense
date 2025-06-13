@@ -1,0 +1,433 @@
+/* AgriSense Component Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #2d5a27 0%, #4a7c59 50%, #667eea 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.98);
+    border-radius: 25px;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    padding: 35px;
+    max-width: 1400px;
+    margin: 0 auto;
+    backdrop-filter: blur(15px);
+}
+
+/* Header Styles */
+.header {
+    text-align: center;
+    margin-bottom: 35px;
+    border-bottom: 3px solid #2d5a27;
+    padding-bottom: 25px;
+}
+
+.header h1 {
+    color: #2d5a27;
+    font-size: 2.8em;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.header .subtitle {
+    color: #4a7c59;
+    font-size: 1.3em;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.header .research-tag {
+    background: linear-gradient(45deg, #2d5a27, #4a7c59);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 25px;
+    font-size: 1em;
+    display: inline-block;
+    margin-top: 10px;
+}
+
+/* Grid Layout */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.section {
+    background: #f8f9fa;
+    border-radius: 20px;
+    padding: 25px;
+    border: 2px solid #e9ecef;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+}
+
+.section h3 {
+    color: #2d5a27;
+    margin-bottom: 20px;
+    font-size: 1.4em;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Configuration Grid */
+.config-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+/* Form Elements */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 0.95em;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    transition: all 0.3s;
+    background: white;
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: #2d5a27;
+    box-shadow: 0 0 0 3px rgba(45, 90, 39, 0.1);
+}
+
+/* Sensor Grid */
+.sensor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.sensor-card {
+    background: white;
+    padding: 18px;
+    border-radius: 15px;
+    border: 2px solid #e9ecef;
+    text-align: center;
+    transition: all 0.3s;
+    position: relative;
+}
+
+.sensor-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border-color: #2d5a27;
+}
+
+.sensor-card h4 {
+    color: #2d5a27;
+    margin-bottom: 8px;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.sensor-value {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: #667eea;
+    margin-bottom: 5px;
+}
+
+.sensor-unit {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.sensor-status {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #28a745;
+}
+
+.status-warning { background: #ffc107; }
+.status-danger { background: #dc3545; }
+
+/* Disease Section */
+.disease-section {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+    border: 2px solid #e9ecef;
+}
+
+.disease-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 15px;
+    align-items: end;
+}
+
+.confidence-bar {
+    background: #e9ecef;
+    height: 8px;
+    border-radius: 4px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.confidence-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #dc3545, #ffc107, #28a745);
+    border-radius: 4px;
+    transition: width 0.3s;
+}
+
+/* Chat Interface */
+.chat-container {
+    grid-column: 1 / -1;
+    background: white;
+    border-radius: 20px;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #e9ecef;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.chat-header {
+    background: linear-gradient(135deg, #2d5a27, #4a7c59);
+    color: white;
+    padding: 20px;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    background: #f8f9fa;
+}
+
+.message {
+    margin-bottom: 20px;
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.message-content {
+    padding: 15px 20px;
+    border-radius: 20px;
+    max-width: 85%;
+    word-wrap: break-word;
+    line-height: 1.5;
+}
+
+.user-message .message-content {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    margin-left: auto;
+}
+
+.bot-message .message-content {
+    background: white;
+    color: #333;
+    border: 2px solid #e9ecef;
+    margin-right: auto;
+}
+
+.message-header {
+    font-size: 0.85em;
+    margin-bottom: 5px;
+    opacity: 0.7;
+}
+
+.chat-input-container {
+    display: flex;
+    padding: 20px;
+    background: white;
+    border-top: 2px solid #e9ecef;
+    gap: 15px;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 15px 20px;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.chat-input:focus {
+    border-color: #2d5a27;
+    box-shadow: 0 0 0 3px rgba(45, 90, 39, 0.1);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* Buttons */
+.btn {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #2d5a27, #4a7c59);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(45, 90, 39, 0.3);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+}
+
+.btn-secondary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Footer */
+.research-footer {
+    margin-top: 30px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 15px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
+}
+
+/* Utility Classes */
+.placeholder-note {
+    background: #fff3cd;
+    border: 1px solid #ffeaa7;
+    color: #856404;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    margin-bottom: 15px;
+}
+
+.typing-indicator {
+    display: flex;
+    gap: 4px;
+    padding: 15px 20px;
+    background: white;
+    border: 2px solid #e9ecef;
+    border-radius: 20px;
+    margin-right: auto;
+    max-width: 85%;
+}
+
+.typing-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #2d5a27;
+    animation: typing 1.4s infinite ease-in-out;
+}
+
+.typing-dot:nth-child(1) { animation-delay: -0.32s; }
+.typing-dot:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes typing {
+    0%, 80%, 100% { transform: scale(0.8); opacity: 0.5; }
+    40% { transform: scale(1); opacity: 1; }
+}
+
+.error-message {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+}
+
+.success-message {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-size: 0.9em;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .config-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .sensor-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .header h1 {
+        font-size: 2.2em;
+    }
+    
+    .disease-grid {
+        grid-template-columns: 1fr;
+    }
+} 

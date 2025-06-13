@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriSense - Research-Grade Plant Stress Detection</title>
+    <link rel="stylesheet" href="components/styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌱 AgriSense</h1>
+            <div class="subtitle">Real-Time Plant Stress Detection & Advisory System</div>
+            <div class="research-tag">Research-Grade Implementation | Gas Sensors + Image Processing</div>
+        </div>
+
+        <div class="main-grid">
+            <!-- Gas Sensor Data Section -->
+            <div class="section">
+                <h3>🔬 Gas Sensor Readings</h3>
+                <div class="placeholder-note">
+                    📝 Note: Update threshold values based on your research data
+                </div>
+                <div class="sensor-grid">
+                    <div class="sensor-card">
+                        <div class="sensor-status" id="mq135-status"></div>
+                        <h4>MQ-135</h4>
+                        <div class="form-group">
+                            <input type="number" id="co2-reading" placeholder="CO2" step="0.1">
+                            <div class="sensor-unit">ppm</div>
+                        </div>
+                    </div>
+                    <div class="sensor-card">
+                        <div class="sensor-status" id="nh3-status"></div>
+                        <h4>NH3</h4>
+                        <div class="form-group">
+                            <input type="number" id="nh3-reading" placeholder="NH3" step="0.1">
+                            <div class="sensor-unit">ppm</div>
+                        </div>
+                    </div>
+                    <div class="sensor-card">
+                        <div class="sensor-status" id="mq3-status"></div>
+                        <h4>MQ-3</h4>
+                        <div class="form-group">
+                            <input type="number" id="ethanol-reading" placeholder="Ethanol" step="0.1">
+                            <div class="sensor-unit">ppm</div>
+                        </div>
+                    </div>
+                    <div class="sensor-card">
+                        <div class="sensor-status" id="mq136-status"></div>
+                        <h4>MQ-136</h4>
+                        <div class="form-group">
+                            <input type="number" id="h2s-reading" placeholder="H2S" step="0.1">
+                            <div class="sensor-unit">ppm</div>
+                        </div>
+                    </div>
+                    <div class="sensor-card">
+                        <div class="sensor-status" id="temp-status"></div>
+                        <h4>Temperature</h4>
+                        <div class="form-group">
+                            <input type="number" id="temp-reading" placeholder="Temp" step="0.1">
+                            <div class="sensor-unit">°C</div>
+                        </div>
+                    </div>
+                    <div class="sensor-card">
+                        <div class="sensor-status" id="humidity-status"></div>
+                        <h4>Humidity</h4>
+                        <div class="form-group">
+                            <input type="number" id="humidity-reading" placeholder="Humidity" step="0.1">
+                            <div class="sensor-unit">%</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-secondary" onclick="simulateResearchData()">🧪 Simulate Research Data</button>
+            </div>
+
+            <!-- Image Processing Results -->
+            <div class="section">
+                <h3>📸 CNN Disease Classification</h3>
+                <div class="placeholder-note">
+                    📝 Note: Replace with your 10 tomato disease classes
+                </div>
+                <div class="disease-section">
+                    <div class="disease-grid">
+                        <div class="form-group">
+                            <label for="detected-disease">Detected Disease:</label>
+                            <select id="detected-disease">
+                                <option value="">Select detected disease...</option>
+                                <option value="healthy">Healthy</option>
+                                <option value="early_blight">Early Blight</option>
+                                <option value="late_blight">Late Blight</option>
+                                <option value="leaf_mold">Leaf Mold</option>
+                                <option value="septoria_leaf_spot">Septoria Leaf Spot</option>
+                                <option value="spider_mites">Spider Mites</option>
+                                <option value="target_spot">Target Spot</option>
+                                <option value="yellow_leaf_curl">Yellow Leaf Curl Virus</option>
+                                <option value="mosaic_virus">Mosaic Virus</option>
+                                <option value="bacterial_spot">Bacterial Spot</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="confidence-score">Confidence:</label>
+                            <input type="number" id="confidence-score" placeholder="0.00" min="0" max="1" step="0.01">
+                        </div>
+                    </div>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" id="confidence-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+                <button class="btn btn-secondary" onclick="simulateCNNResults()">🤖 Simulate CNN Results</button>
+            </div>
+
+            <!-- Research Assistant -->
+            <div class="section">
+                <h3>📚 Research Context</h3>
+                <div class="form-group">
+                    <label for="research-notes">Additional Context:</label>
+                    <textarea id="research-notes" rows="4" placeholder="Enter any additional research context, environmental conditions, or specific observations..."></textarea>
+                </div>
+                <button class="btn btn-primary" onclick="performResearchAnalysis()">🔬 Perform Research Analysis</button>
+            </div>
+        </div>
+
+        <!-- Chat Interface -->
+        <div class="section">
+            <div class="chat-container">
+                <div class="chat-header">
+                    🤖 AgriSense Research Assistant | VOC Analysis + Disease Detection
+                </div>
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message bot-message">
+                        <div class="message-header">Research Assistant</div>
+                        <div class="message-content">
+                            🌱 <strong>Welcome to AgriSense Research System!</strong><br><br>
+                            I'm your specialized research assistant trained on plant stress detection literature. I can analyze:
+                            <br>• <strong>Gas Sensor Data:</strong> VOC emissions from MQ-135, MQ-3, MQ-136 sensors
+                            <br>• <strong>CNN Results:</strong> Disease classification with confidence scores
+                            <br>• <strong>Multi-modal Analysis:</strong> Correlating gas patterns with visual symptoms
+                            <br>• <strong>Research Insights:</strong> Based on 20+ peer-reviewed papers
+                            <br><br>Enter your sensor readings and CNN results, then ask me for analysis! 🔬
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-container">
+                    <input type="text" class="chat-input" id="chat-input" placeholder="Ask about VOC patterns, stress correlations, or research insights..." onkeypress="handleKeyPress(event)">
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="send-button" onclick="sendMessage()">Send</button>
+                        <button class="btn btn-secondary" onclick="clearChat()">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Additional Controls -->
+        <!-- <div class="section">
+            <h3>🛠️ System Controls</h3>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <button class="btn btn-secondary" onclick="window.agriSenseApp?.exportResearchData()">📊 Export Data</button>
+                <button class="btn btn-secondary" onclick="window.agriSenseApp?.resetApplication()">🔄 Reset System</button>
+                <button class="btn btn-secondary" onclick="window.agriSenseApp?.validateAllData()">✅ Validate Data</button>
+            </div>
+        </div> -->
+
+        <div class="research-footer">
+            <strong>AgriSense Research Implementation</strong> | Based on multi-sensor VOC detection and CNN-based disease classification<br>
+            <em>Developed for precision agriculture and early plant stress detection research</em>
+        </div>
+    </div>
+
+    <!-- Legacy compatibility function -->
+    <script>
+        function handleKeyPress(event) {
+            if (event.key === 'Enter' && window.agriSenseApp) {
+                window.agriSenseApp.chatManager.sendMessage();
+            }
+        }
+    </script>
+
+    <!-- Import the modular application -->
+    <script type="module" src="components/app.js"></script>
+</body>
+</html> 
