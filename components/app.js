@@ -74,7 +74,7 @@ class AgriSenseApp {
     handleResearchAnalysis() {
         const sensorData = this.sensorManager.collectSensorData();
         const diseaseData = this.diseaseManager.collectDiseaseData();
-        const plantType = 'tomato';
+        const plantType = document.getElementById('plant-type')?.value || 'tomato';
         const context = document.getElementById('research-notes')?.value || '';
 
         this.chatManager.performResearchAnalysis(sensorData, diseaseData, plantType, context);
@@ -85,7 +85,7 @@ class AgriSenseApp {
         return {
             sensorData: this.sensorManager.collectSensorData(),
             diseaseData: this.diseaseManager.collectDiseaseData(),
-            plantType: 'tomato',
+            plantType: document.getElementById('plant-type')?.value || 'tomato',
             context: document.getElementById('research-notes')?.value || ''
         };
     }
