@@ -752,7 +752,9 @@
             
             analysisRequest += "Please provide comprehensive research-grade analysis correlating VOC patterns with visual symptoms.";
             
-            addMessage(analysisRequest, 'user');
+            // Format the analysis request before adding to chat
+            const formattedRequest = formatBotResponse(analysisRequest);
+            addMessage(formattedRequest, 'user');
             sendToGemini(analysisRequest);
         }
 
@@ -896,7 +898,9 @@
 
                 if (data.candidates && data.candidates[0]) {
                     const botResponse = data.candidates[0].content.parts[0].text;
-                    addMessage(botResponse, 'bot');
+                    // Convert plain text to formatted HTML
+                    const formattedResponse = formatBotResponse(botResponse);
+                    addMessage(formattedResponse, 'bot');
                 } else if (data.error) {
                     addMessage(`❌ API Error: ${data.error.message || 'Unknown error occurred'}`, 'bot');
                 } else {
@@ -963,6 +967,59 @@ Provide research-grade analysis with:
 Response should be academic but practical for farmers.`;
 
             return prompt;
+        }
+
+        function formatBotResponse(text) {
+            let formattedText = text;
+
+            // 1. Escape HTML characters first to prevent markdown from being misinterpreted as HTML
+            formattedText = formattedText.replace(/&/g, '&amp;');
+            formattedText = formattedText.replace(/</g, '&lt;');
+            formattedText = formattedText.replace(/>/g, '&gt;');
+            formattedText = formattedText.replace(/"/g, '&quot;');
+            formattedText = formattedText.replace(/'/g, '&#039;');
+
+            // 2. Handle specific bolded numbered section headers (e.g., "**1. Data interpretation...**")
+            // This needs to be done first to apply specific styling and prevent general bolding.
+            formattedText = formattedText.replace(/\*\*(\d+\.\s.+?):?\*\*/g, 
+                '<p><strong style="color: #4a7c59; font-size: 1.05em; margin-top: 15px; margin-bottom: 5px; display: block;">$1:</strong></p>');
+            
+            // 3. Handle general bold text (e.g., "**CO2 (MQ-135): 381.6 ppm:**", "**Inconsistencies and Potential Explanations:**")
+            // This is for bold text not caught by the specific header rule
+            formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+
+            // 4. Handle italic text (e.g., "*leaf_mold*", "*Passalora fulva*")
+            formattedText = formattedText.replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+            // 5. Convert bullet points that start with a literal '*' followed by content.
+            // We'll convert these to a visual bullet character for presentation.
+            // This needs to happen AFTER bold/italic to ensure internal formatting is done.
+            formattedText = formattedText.replace(/(?:<br>|^)\*\s*(.*?)(?=<br>|$)/g, '<br>&bull; $1');
+
+            // 6. Convert multiple newlines to paragraph breaks
+            formattedText = formattedText.replace(/\n{2,}/g, '</p><p>');
+            
+            // 7. Convert single newlines to line breaks (within paragraphs or blocks)
+            formattedText = formattedText.replace(/\n/g, '<br>');
+
+            // 8. Ensure the entire response is wrapped in a paragraph if it's not already.
+            // This helps ensure consistent block-level formatting.
+            if (!formattedText.startsWith('<p>')) {
+                formattedText = '<p>' + formattedText;
+            }
+            if (!formattedText.endsWith('</p>')) {
+                formattedText = formattedText + '</p>';
+            }
+
+            // 9. Clean up any empty paragraphs that might have been created or extra <br> tags.
+            formattedText = formattedText.replace(/<p><\/p>/g, ''); // Remove empty paragraphs
+            formattedText = formattedText.replace(/<p><br>/g, '<p>'); // Remove <br> immediately after <p>
+            formattedText = formattedText.replace(/<br><\/p>/g, '</p>'); // Remove <br> immediately before </p>
+            
+            // Remove any trailing '*' that might be left from the original text if it's not markdown
+            formattedText = formattedText.replace(/\s\*$/, '');
+
+            return formattedText;
         }
 
         // Initialize the application
